@@ -1,11 +1,10 @@
-import Foundation
+var input = Int(readLine()!)!
+var arr = readLine()!.split(separator: " ").map{Float(String($0))!}
+var max = arr.max()!
 
-let count = Int(readLine()!)!
-let arr = readLine()!.split(separator: " ").map { Int($0)! }
-let maxNum = arr.max()!
-var resultArr: [Double] = []
-for i in 0...(count-1) {
-    resultArr.append(Double(arr[i])/Double(maxNum)*100)
+var sum:Float = 0
+
+for i in 0..<arr.count {
+    sum = sum + arr[i]/max*100
 }
-let result = resultArr.reduce(0, { $0 + $1 })/Double(count)
-print(String(format: "%.2f", result))
+print(sum/Float(arr.count))
