@@ -1,19 +1,18 @@
-var text = readLine()!
-let char = Array(text.lowercased())
+let word = readLine()!.uppercased()
+var dict: [String:Int] = [:]
+var result: [String] = []
 
-var numArr: [Int] = []
-
-for i in Int(UnicodeScalar("a").value)...Int(UnicodeScalar("z").value) {
-    let alp = Character(UnicodeScalar(i)!)
-    let num = char.filter { $0 == alp }.count
-    numArr.append(num)
+for i in word {
+    if dict[String(i)] == nil {
+        dict[String(i)] = 1
+    }else {
+        dict[String(i)]! += 1
+    }
+}
+for key in dict.keys {
+    if dict[key] == dict.values.max() {
+        result.append(key)
+    }
 }
 
-let max = numArr.max()!
-let answer = numArr.firstIndex(of: max)!
-let ans = String(UnicodeScalar(Int(UnicodeScalar("a").value) + answer)!).uppercased()
-if numArr.filter({ $0 == max }).count == 1 {
-    print(ans)
-} else {
-    print("?")
-}
+print(result.count > 1 ? "?" : "\(result[0])" )
